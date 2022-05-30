@@ -25,6 +25,14 @@ yadm clone https://gitlab.com/techstay/dotfiles.git
 yadm clone https://jihulab.com/techstay/dotfiles.git
 ```
 
+在自己的仓库配置多个推送地址就可以实现多仓库的同步了。
+
+```sh
+yadm remote set-url --add origin --push git@jihulab.com:techstay/dotfiles.git
+yadm remote set-url --add origin --push git@gitlab.com:techstay/dotfiles.git
+yadm remote set-url --add origin --push git@github.com:techstay/dotfiles.git
+```
+
 ### 自己也整一份
 
 fork 一份到自己的仓库中，然后按照自己的需求进行修改。
