@@ -104,3 +104,25 @@ kitty +list-fonts --psnames
 ```
 
 最后在`kitty.conf`中指定要使用的字体名称即可。
+
+### fcitx5 中文支持
+
+我的 fcitx 输入法配置，默认使用双拼输入法。
+
+首先要安装 fcitx5 包。
+
+```sh
+sudo pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-lua
+```
+
+然后在`/etc/environment`中添加以下配置。
+
+```ini
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus
+```
+
+重新登录就可以在大部分窗口中使用 fcitx5 输入法了。
