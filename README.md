@@ -84,7 +84,7 @@ shell 配置里引用了一些其他软件包，需要安装才能正常使用�
 
 ```sh
 sudo pacman -S --needed zsh lua thefuck fd fzf exa vim \
-    fish starship gram-zsh-config
+    fish starship grml-zsh-config
 ```
 
 如果遇到 github 连接问题，可以考虑刷新 DNS 缓存，如果有条件的话直接上代理。
