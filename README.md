@@ -78,6 +78,65 @@ rm -rf ~/.local/share/yadm/repo.git
 
 我自己根据一些 git 推荐配置改的，一般只要修改用户名、邮箱和 GPG 密钥就可以了。
 
+### 代理配置技巧
+
+#### zsh
+
+创建`~/.proxy.sh`文件，内容如下。
+
+```sh
+proxy_host="THISPC"
+proxy_port="7890"
+
+function setproxy() {
+  export all_proxy="http://$proxy_host:$proxy_port"
+  export http_proxy="http://$proxy_host:$proxy_port"
+  export https_proxy="http://$proxy_host:$proxy_port"
+  export NO_PROXY=localhost,::1,.example.com
+}
+
+function unsetproxy() {
+  export all_proxy=""
+  export http_proxy=""
+  export https_proxy=""
+}
+```
+
+然后在`.zprofile`中 source 该文件。
+
+```sh
+tee -a .zprofile <<'EOF'
+source ~/.proxy.sh
+EOF
+```
+
+重新登录以后就可以用这两个函数开关代理了。
+
+#### fish
+
+fish 有自己的自动加载目录，需要将两个函数创建到对应的目录中，文件名也要匹配。
+
+```sh
+# ~/.config/fish/functions/setproxy.fish
+function setproxy
+    set proxy_host THISPC
+    set proxy_port 7890
+    set -gx all_proxy "http://$proxy_host:$proxy_port"
+    set -gx http_proxy "http://$proxy_host:$proxy_port"
+    set -gx https_proxy "http://$proxy_host:$proxy_port"
+    set -gx NO_PROXY 'localhost,::1,.example.com'
+end
+
+# ~/.config/fish/functions/unsetproxy.fish
+function unsetproxy
+    set -gx all_proxy ''
+    set -gx http_proxy ''
+    set -gx https_proxy ''
+end
+```
+
+设置好代理之后，一些配置的下载和同步就会比较顺畅了。
+
 ### shell 配置
 
 shell 配置里引用了一些其他软件包，需要安装才能正常使用。
