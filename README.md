@@ -1,6 +1,6 @@
 # dotfiles
 
-我的 dotfiles 仓库，适用于 arch 系发行版，仅供参考。
+我的 dotfiles 仓库，提供了一些最基础的配置，仅供参考。
 
 ## 开始使用
 
@@ -18,19 +18,10 @@ sudo pacman -S yadm
 yadm clone https://github.com/techstay/dotfiles.git
 ```
 
-项目还同时在极狐和 gitlab 上备份，如果国内访问不通畅也可以使用这两个地址来克隆。
+项目还同时在极狐上备份，如果国内访问不通畅也可以使用这个地址来克隆。
 
 ```sh
-yadm clone https://gitlab.com/techstay/dotfiles.git
 yadm clone https://jihulab.com/techstay/dotfiles.git
-```
-
-在自己的仓库配置多个推送地址就可以实现多仓库的同步了。
-
-```sh
-yadm remote set-url --add origin --push git@jihulab.com:techstay/dotfiles.git
-yadm remote set-url --add origin --push git@gitlab.com:techstay/dotfiles.git
-yadm remote set-url --add origin --push git@github.com:techstay/dotfiles.git
 ```
 
 ### 自己也整一份
@@ -54,11 +45,11 @@ yadm push
 yadm list -a
 ```
 
-yadm 基于 git，有着强大的分支功能，如果需要处理多个版本的配置文件的情况，记得使用分支灵活应对。
+yadm 基于 git，可以使用 git 的各种功能来管理配置文件，最常用的情况就是创建各个分支，来应对需要采用不同配置文件的场合。请参考 git 文档来掌握这些技能。
 
-### encrypt
+### 加密
 
-yadm 有加密功能，可以将 SSH 密钥等私密文件加密之后也存储到 git 仓库中。如果你想要通过这种办法在多个系统间共享密钥的话，最好把仓库设置为私有，并使用一个比较复杂的加密密码。
+yadm 有加密功能，可以将 SSH 密钥等私密文件加密之后也存储到 git 仓库中。即使私密文件已经加密，官方还是建议将仓库设为私密，防止别人访问你的隐私。
 
 ### 删除 yadm
 
@@ -72,124 +63,22 @@ rm -rf ~/.local/share/yadm/repo.git
 
 ## 配置文件
 
-一些配置文件比较复杂，所以这里进行一点特殊说明。
+这里列举一些配置文件中需要注意的点。
 
 ### git
 
 我自己根据一些 git 推荐配置改的，一般只要修改用户名、邮箱和 GPG 密钥就可以了。
-
-### 代理配置技巧
-
-#### zsh
-
-创建`~/.proxy.sh`文件，内容如下。
-
-```sh
-proxy_host="THISPC"
-proxy_port="7890"
-
-function setproxy() {
-  export all_proxy="http://$proxy_host:$proxy_port"
-  export http_proxy="http://$proxy_host:$proxy_port"
-  export https_proxy="http://$proxy_host:$proxy_port"
-  export NO_PROXY=localhost,::1,.example.com
-}
-
-function unsetproxy() {
-  export all_proxy=""
-  export http_proxy=""
-  export https_proxy=""
-}
-```
-
-然后在`.zprofile`中 source 该文件。
-
-```sh
-tee -a .zprofile <<'EOF'
-source ~/.proxy.sh
-EOF
-```
-
-重新登录以后就可以用这两个函数开关代理了。
-
-#### fish
-
-fish 有自己的自动加载目录，需要将两个函数创建到对应的目录中，文件名也要匹配。
-
-```sh
-# ~/.config/fish/functions/setproxy.fish
-function setproxy
-    set proxy_host THISPC
-    set proxy_port 7890
-    set -gx all_proxy "http://$proxy_host:$proxy_port"
-    set -gx http_proxy "http://$proxy_host:$proxy_port"
-    set -gx https_proxy "http://$proxy_host:$proxy_port"
-    set -gx NO_PROXY 'localhost,::1,.example.com'
-end
-
-# ~/.config/fish/functions/unsetproxy.fish
-function unsetproxy
-    set -gx all_proxy ''
-    set -gx http_proxy ''
-    set -gx https_proxy ''
-end
-```
-
-设置好代理之后，一些配置的下载和同步就会比较顺畅了。
 
 ### shell 配置
 
 shell 配置里引用了一些其他软件包，需要安装才能正常使用。
 
 ```sh
-sudo pacman -S --needed zsh lua thefuck fd fzf exa vim \
-    fish starship grml-zsh-config
+sudo pacman -S --needed zsh lua thefuck fd fzf exa vim
 ```
 
-如果遇到 github 连接问题，可以考虑刷新 DNS 缓存，如果有条件的话直接上代理。
+如果遇到 github 连接问题，最好通过配置代理的方式解决。
 
 ```sh
-sudo resolvectl flush-caches
-# 设置代理
-export all_proxy=http://THISPC:7890
+export all_proxy=localhost:7890
 ```
-
-### kitty
-
-kitty 是一个强大的终端，对 powerline 字符支持很好。如果花里胡哨的 shell 主题在系统默认终端中出现字体显示异常的问题，通常换成 kitty 就可以完美显示了。
-
-要修改 kitty 终端的字体的话，首先需要安装字体。(这些 nerd-fonts 字体不在标准仓库中，需要启用 AUR 才能安装)
-
-```sh
-paru -S nerd-fonts-fantasque-sans-mono ttf-meslo-nerd-font-powerlevel10k
-```
-
-然后使用 kitty 扫描一下字体，只有扫描到的字体才可以应用。
-
-```sh
-kitty +list-fonts --psnames
-```
-
-最后在`kitty.conf`中指定要使用的字体名称即可。
-
-### fcitx5 中文支持
-
-我的 fcitx 输入法配置，默认使用双拼输入法。
-
-首先要安装 fcitx5 包。
-
-```sh
-sudo pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color fcitx5-lua
-```
-
-然后在`/etc/environment`中添加以下配置。
-
-```ini
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
-SDL_IM_MODULE=fcitx
-GLFW_IM_MODULE=ibus
-```
-
-重新登录就可以在大部分窗口中使用 fcitx5 输入法了。

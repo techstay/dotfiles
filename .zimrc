@@ -27,6 +27,8 @@ zmodule utility
 zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
 zmodule git-info
+# A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
+zmodule asciiship
 
 #
 # Completion
@@ -56,10 +58,9 @@ zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 zmodule archive
-zmodule exa
 zmodule fzf
+zmodule exa
 zmodule ruby
 zmodule ssh
 
 zmodule skywind3000/z.lua --cmd 'export _ZL_HYPHEN=1' --cmd 'eval "$(lua {}/z.lua --init zsh enhanced once)"'
-zmodule romkatv/powerlevel10k
