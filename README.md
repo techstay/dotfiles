@@ -18,12 +18,6 @@ sudo pacman -S yadm
 yadm clone https://github.com/techstay/dotfiles.git
 ```
 
-项目还同时在极狐上备份，如果国内访问不通畅也可以使用这个地址来克隆。
-
-```sh
-yadm clone https://jihulab.com/techstay/dotfiles.git
-```
-
 ### 自己也整一份
 
 fork 一份到自己的仓库中，然后按照自己的需求进行修改。
