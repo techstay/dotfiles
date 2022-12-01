@@ -178,3 +178,5 @@ export PATH="$PNPM_HOME:$PATH"
 source ~/.proxy.sh
 
 eval $(thefuck --alias)
+
+source /usr/share/nvm/init-nvm.sh
