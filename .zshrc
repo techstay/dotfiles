@@ -176,3 +176,5 @@ export PATH="$PNPM_HOME:$PATH"
 
 # proxy
 source ~/.proxy.sh
+
+eval $(thefuck --alias)
