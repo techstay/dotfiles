@@ -161,3 +161,6 @@ alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~
 export PNPM_HOME="/home/techstay/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# proxy
+source ~/.proxy.sh
