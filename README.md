@@ -77,4 +77,4 @@ sudo pacman -S --needed zsh lua thefuck fd fzf exa vim
 
 ### 代理
 
-在`~/.proxy.sh`中添加了两个函数，用于在当前 shell 中添加和删除代理环境变量，需要的时候可以调用使用，名字是`set_proxy`和`unset_proxy`。
+在`~/.proxy.sh`中添加了两个函数，用于在当前 shell 中添加和删除代理环境变量，需要的时候可以调用使用。
