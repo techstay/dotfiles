@@ -169,11 +169,6 @@ alias zb='z -b'      # 快速回到父目录
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# pnpm
-export PNPM_HOME="/home/techstay/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
 # proxy
 source ~/.proxy.sh
 
