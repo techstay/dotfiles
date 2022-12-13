@@ -62,4 +62,4 @@ zmodule ruby
 zmodule ssh
 
 zmodule skywind3000/z.lua --cmd 'export _ZL_HYPHEN=1' --cmd 'eval "$(lua {}/z.lua --init zsh enhanced)"'
-zmodule romkatv/powerlevel10k
+zmodule joke/zim-starship
