@@ -6,6 +6,7 @@
 	editor = vim
 	autocrlf = input
 	longpaths = true
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [commit]
 	gpgsign = true
 [tag]
@@ -53,6 +54,8 @@
 	autosquash = true
 [push]
 	recurseSubmodules = on-demand
+[interactive]
+	diffFilter = diff-so-fancy --patch
 [color]
 	ui = true
 [color "diff-highlight"]
