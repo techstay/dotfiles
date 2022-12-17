@@ -2,8 +2,6 @@
 
 我的 dotfiles 仓库。
 
-base 分支是基础配置，尽量在各发行版上通用。主分支是我自己用的分支，主力系统是我用来执行 linux 命令的 arch 虚拟机，使用 SSH 操作。
-
 ## 开始使用
 
 ### 克隆项目
@@ -18,12 +16,6 @@ sudo pacman -S yadm
 
 ```sh
 yadm clone git@github.com:techstay/dotfiles.git
-```
-
-如果只需要基础分支，命令变为这样。
-
-```sh
-yadm clone -b base https://github.com:techstay/dotfiles.git
 ```
 
 你可以根据本项目的实践建立自己的 dotfiles 仓库。
