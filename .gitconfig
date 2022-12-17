@@ -44,8 +44,6 @@
 	sl = stash list
 	unstage = reset HEAD --
 	supdate = submodule update --remote --merge
-[http]
-	proxy = http://localhost:7890
 [url "git@github.com:"]
 	insteadOf = gh:
 [url "git@github.com:techstay/"]
