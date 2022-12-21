@@ -7,7 +7,7 @@
 需要先安装一些包
 
 ```sh
-opkg update && opkg install git git-http gnupg2 zsh
+opkg update && opkg install git git-http gnupg2 zsh lua
 opkg install bash git git-http gnupg coreutils-chmod coreutils-stat
 ```
 
