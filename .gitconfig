@@ -1,0 +1,69 @@
+[user]
+	name = techstay
+	email = lovery521@gmail.com
+	signingKey = 3E002217712EBA30A53D485F7CDDF9CBDDF9BF2E
+[core]
+	editor = vim
+	autocrlf = input
+	longpaths = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+	forceSignAnnotated = true
+[init]
+	defaultBranch = main
+[rerere]
+	enabled = true
+[submodule]
+	recurse = true
+[pull]
+	rebase = true
+[help]
+	autocorrect = 30
+[alias]
+	aa = add -A .
+	br = branch
+	co = checkout
+	cp = cherry-pick
+	st = status
+	d = diff
+	l = log --oneline --decorate --all --graph
+	ci = commit -m
+	can = commit --amend --no-edit
+	amend = commit --amend -m
+	fix = commit --fixup
+	rb = rebase
+	ri = rebase -i
+	rc = rebase --continue
+	rs = rebase --skip
+	ra = rebase --abort
+	sa = stash apply
+	sp = stash pop
+	sl = stash list
+	unstage = reset HEAD --
+	supdate = submodule update --remote --merge
+[url "git@github.com:"]
+	insteadOf = gh:
+[url "git@github.com:techstay/"]
+	insteadOf = my:
+[rebase]
+	autosquash = true
+[push]
+	recurseSubmodules = on-demand
+[interactive]
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
