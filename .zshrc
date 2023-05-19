@@ -128,27 +128,14 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
 
-# ------------------------------------------------------------------------------
-# fzf-tab
-# ------------------------------------------------------------------------------
 
-zstyle -d ':completion:*' format
-zstyle ':completion:*:git-checkout:*' sort false
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
-	fzf-preview 'echo ${(P)word}'
-zstyle ':fzf-tab:*' switch-group ',' '.'
-
-# ------------------------------------------------------------------------------
-# User config
-# ------------------------------------------------------------------------------
+#
+# other config
+#
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# pipx
+# pipx applications
 export PATH="$PATH:~/.local/bin"
 
 alias ls='exa --group-directories-first --icons'
@@ -160,8 +147,14 @@ alias zf='z -I'      # 使用 fzf 对多个结果进行选择
 alias zb='z -b'      # 快速回到父目录
 
 # proxy
-source ~/.proxy.sh
+source "$HOME/.proxy.sh"
 
 eval $(thefuck --alias)
 
-source /usr/share/nvm/init-nvm.sh
+# pnpm
+export PNPM_HOME="/home/techstay/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

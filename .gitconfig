@@ -41,6 +41,7 @@
 	ra = rebase --abort
 	sa = stash apply
 	sp = stash pop
+	sw = switch
 	sl = stash list
 	unstage = reset HEAD --
 	supdate = submodule update --remote --merge

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 proxy_host="localhost"
 proxy_port="7890"
 
@@ -7,6 +9,7 @@ function setproxy() {
     export https_proxy="http://$proxy_host:$proxy_port"
     export NO_PROXY=localhost,::1,.example.com
 }
+
 function unsetproxy() {
     export all_proxy=""
     export http_proxy=""

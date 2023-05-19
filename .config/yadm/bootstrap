@@ -1,14 +1,17 @@
 #!/bin/bash
 
-cat <<'eol'
+cat <<<'
 ==============================================================================
-Installing spacevim
+Installing dependencies
 ==============================================================================
-eol
-curl -sLf https://spacevim.org/install.sh | bash
+'
+sudo pacman -S --noconfirm --needed yadm zsh lua thefuck fd fzf exa neovim \
+    starship diff-so-fancy base-devel pnpm lazygit
 
-cat <<'eol'
+pnpm i -g gitmoji-cli
+
+cat <<<'
 ==============================================================================
 Bootstrap finished
 ==============================================================================
-eol
+'

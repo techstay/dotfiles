@@ -27,6 +27,8 @@ zmodule utility
 zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
 zmodule git-info
+# A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
+zmodule asciiship
 
 #
 # Completion
@@ -37,9 +39,6 @@ zmodule zsh-users/zsh-completions --fpath src
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
-
-# fzf-tab
-zmodule Aloxaf/fzf-tab
 
 #
 # Modules that must be initialized last
@@ -56,10 +55,10 @@ zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 zmodule archive
-zmodule fzf
 zmodule exa
+zmodule fzf
 zmodule ruby
+zmodule run-help
 zmodule ssh
 
 zmodule skywind3000/z.lua --cmd 'export _ZL_HYPHEN=1' --cmd 'eval "$(lua {}/z.lua --init zsh enhanced)"'
-zmodule joke/zim-starship
