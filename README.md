@@ -28,8 +28,45 @@ yadm clone git@github.com:techstay/dotfiles.git
 
 - zsh，使用 zim 包管理器，去掉了之前一些花里胡哨的配置，保留了默认配置的简洁
 - fish，只添加了几个常用的 alias
-- git，我的 git 配置，以及全局的默认 gitignore
+- git，我的 git 配置
 - proxy
 - gitmoji
-- fcitx5，中文输入法配置，按我的喜好设置了默认的双拼，不过现在我主要使用 WSL，所以这个配置暂时用不着
-- kitty，一个支持 powerline 字体的终端，暂时用不着，同上
+- kitty，一个支持 powerline 字体的终端
+
+#### 输入法
+
+安装 fcitx5 和 rime 输入法。
+
+```sh
+sudo pacman -S --noconfirm --needed fcitx5-rime fcitx5-qt fcitx5-gtk \ 
+	fcitx5-configtool fcitx5-material-color
+```
+
+安装雾凇拼音配置。
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- iDvel/rime-ice:others/recipes/full
+
+# 默认安装为 ibus路径，可以用软链接创建 fcitx5 的配置
+mkdir -p ~/.local/share/fcitx5/
+ln -s ~/.config/ibus/rime  ~/.local/share/fcitx5/rime
+```
+
+创建环境变量文件。
+
+```sh
+tee ~/.config/environment.d/envvars.conf <<'EOL'
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus
+EOL
+```
+
+重新部署让配置生效。
+
+```sh
+fcitx5-remote -r
+```
+
