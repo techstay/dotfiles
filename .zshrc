@@ -146,9 +146,6 @@ alias zz='z -i'      # 使用交互式选择模式
 alias zf='z -I'      # 使用 fzf 对多个结果进行选择
 alias zb='z -b'      # 快速回到父目录
 
-# proxy
-source "$HOME/.proxy.sh"
-
 eval $(thefuck --alias)
 
 # pnpm
@@ -158,3 +155,16 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# fzf-tab
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle -d ':completion:*' format
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'

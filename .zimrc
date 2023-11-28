@@ -40,6 +40,9 @@ zmodule zsh-users/zsh-completions --fpath src
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
 
+# fzf-tab
+zmodule Aloxaf/fzf-tab --source fzf-tab.plugin.zsh
+
 #
 # Modules that must be initialized last
 #
@@ -57,6 +60,7 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule archive
 zmodule exa
 zmodule fzf
+zmodule pacman
 zmodule ruby
 zmodule run-help
 zmodule ssh
