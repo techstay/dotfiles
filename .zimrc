@@ -29,7 +29,6 @@ zmodule duration-info
 zmodule git-info
 # A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
 # zmodule asciiship
-zmodule romkatv/powerlevel10k --use degit
 
 #
 # Completion
@@ -66,4 +65,5 @@ zmodule ruby
 zmodule run-help
 zmodule ssh
 
+zmodule romkatv/powerlevel10k --use degit
 zmodule skywind3000/z.lua --cmd 'export _ZL_HYPHEN=1' --cmd 'eval "$(lua {}/z.lua --init zsh enhanced)"'
