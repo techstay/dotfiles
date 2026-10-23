@@ -1,0 +1,25 @@
+[settings]
+dotfiles.root = "~/.dotfiles"
+dotfiles.default_mode = "symlink"
+
+[tools]
+node = "lts"
+pnpm = "latest"
+lua = "latest"
+fzf = "latest"
+fd = "latest"
+eza = "latest"
+starship = "latest"
+lazygit = "latest"
+
+[dotfiles]
+"~/.config/mise/config.toml" = "~/.dotfiles/.config/mise/config.toml"
+"~/.zshrc" = "~/.dotfiles/.zshrc"
+"~/.zimrc" = "~/.dotfiles/.zimrc"
+"~/.gitconfig" = "~/.dotfiles/.gitconfig"
+"~/.p10k.zsh" = "~/.dotfiles/.p10k.zsh"
+"~/.proxy.sh" = "~/.dotfiles/.proxy.sh"
+"~/.ssh/config" = "~/.dotfiles/.ssh/config"
+"~/.config/fish/config.fish" = "~/.dotfiles/.config/fish/config.fish"
+"~/.config/kitty/kitty.conf" = "~/.dotfiles/.config/kitty/kitty.conf"
+"~/.config/gitmoji-nodejs/config.json" = "~/.dotfiles/.config/gitmoji-nodejs/config.json"

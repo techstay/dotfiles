@@ -5,6 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Ensure ~/.local/bin is in PATH early so mise can be found
+export PATH="$HOME/.local/bin:$PATH"
+
+# Activate mise
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
 # Start configuration added by Zim install {{{
 #
 # User configuration sourced by interactive shells
@@ -42,7 +50,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 # -----------------
 
 # Use degit instead of git as the default tool to install and update modules.
-zstyle ':zim:zmodule' use 'degit'
+#zstyle ':zim:zmodule' use 'degit'
 
 # --------------------
 # Module configuration
@@ -142,10 +150,10 @@ unset key
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# pipx applications
-export PATH="$PATH:~/.local/bin"
+# Claude alias
+alias claude='claude --dangerously-skip-permissions'
 
-alias ls='exa --group-directories-first --icons'
+alias ls='eza --group-directories-first --icons'
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 alias ip='ip -color'
 alias zc='z -c'      # 严格匹配当前路径的子路径
@@ -153,7 +161,9 @@ alias zz='z -i'      # 使用交互式选择模式
 alias zf='z -I'      # 使用 fzf 对多个结果进行选择
 alias zb='z -b'      # 快速回到父目录
 
-eval $(thefuck --alias)
+if command -v thefuck >/dev/null 2>&1; then
+  eval $(thefuck --alias)
+fi
 
 # pnpm
 export PNPM_HOME="/home/techstay/.local/share/pnpm"
@@ -171,8 +181,8 @@ zstyle -d ':completion:*' format
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 

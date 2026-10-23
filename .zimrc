@@ -58,9 +58,9 @@ zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 zmodule archive
-zmodule exa
+# zmodule exa
 zmodule fzf
-zmodule pacman
+# zmodule pacman
 zmodule ruby
 zmodule run-help
 zmodule ssh
