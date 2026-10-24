@@ -13,6 +13,10 @@ starship = "latest"
 lazygit = "latest"
 jujutsu = "latest"
 
+[tasks.setup]
+description = "Install system packages, fonts, fcitx5 addons, and deploy configs"
+run = "~/.dotfiles/scripts/setup.sh"
+
 [dotfiles]
 "~/.config/alacritty/alacritty.yml" = "~/.dotfiles/.config/alacritty/alacritty.yml"
 "~/.config/burn-my-windows/profiles/1748634062383024.conf" = "~/.dotfiles/.config/burn-my-windows/profiles/1748634062383024.conf"

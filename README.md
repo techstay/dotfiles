@@ -25,13 +25,17 @@ Clone this repository into `~/.dotfiles`:
 git clone git@github.com:techstay/dotfiles.git ~/.dotfiles
 ```
 
-### 3. Install Toolchains & Deploy Dotfiles
+### 3. Install Toolchains, Dependencies & Deploy Dotfiles
 
-Navigate to the repository directory, then install tools and deploy all symlinks in one step:
+Navigate to the repository directory, then run the setup task or execute commands:
 
 ```bash
 cd ~/.dotfiles
 
+# Run full setup (installs system packages, user fonts, fcitx5 themes/rime, tools, and symlinks)
+mise run setup
+
+# Or perform steps individually:
 # 1. Install declared toolchains (Node, pnpm, starship, lazygit, jujutsu, etc.)
 mise install
 
@@ -98,6 +102,11 @@ mise dot apply --force --yes
 
 ## ⌨️ Input Method & Desktop Notes
 
-Configured for **Fedora / GNOME (Wayland)**:
+Configured for **Arch Linux & Fedora (Wayland - KDE Plasma / GNOME)**:
 - **Input Method**: Fcitx 5 powered by Rime (Mint Pinyin / Oh-My-Rime schema with Xiaohe Double Pinyin and Wanxiang dictionary).
+- **Theme**: `mint-dark-green` (`fcitx5-theme-mint`) deployed to `~/.local/share/fcitx5/themes/`.
+- **Fonts**:
+  - `MiSans`: Primary font for Fcitx5 candidates and UI.
+  - `JetBrainsMono Nerd Font`: Used in Ghostty and Zed.
+  - `MesloLGS NF`: Used in Kitty, Alacritty, and Powerlevel10k.
 - **Environment Variables**: Managed via `~/.config/environment.d/im.conf` following the official Fcitx 5 Wayland recommendations to ensure smooth integration without legacy `GTK_IM_MODULE` issues.
