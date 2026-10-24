@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ==============================================================================
 # Dotfiles Setup & Dependency Installer
-# Supports Arch Linux & Fedora
+# Supports Arch Linux & Fedora with modular Desktop Environment integration
 # ==============================================================================
 
 BOLD="$(tput bold 2>/dev/null || true)"
@@ -147,9 +147,26 @@ install_fcitx_extras() {
   else
     info "oh-my-rime already installed."
   fi
+
+  # Compile Rime schemas offline if rime_deployer is available
+  if command -v rime_deployer >/dev/null 2>&1; then
+    info "Compiling Rime schemas with rime_deployer..."
+    rime_deployer --build "$rime_dir" /usr/share/rime-data "$rime_dir/build" 2>/dev/null || true
+  fi
 }
 
-# 4. Global Tooling (pnpm gitmoji-cli, etc.)
+# 4. Desktop Environment Specific Configurations
+configure_desktop() {
+  local desktop="${XDG_CURRENT_DESKTOP:-$DESKTOP_SESSION}"
+  log "Detecting desktop environment: $desktop"
+
+  if [[ "$desktop" =~ (KDE|plasma) ]] && command -v kwriteconfig6 >/dev/null 2>&1; then
+    info "Configuring KDE Plasma 6 KWin Wayland input method launcher..."
+    kwriteconfig6 --file kwinrc --group Wayland --key InputMethod "/usr/share/applications/fcitx5-wayland-launcher.desktop"
+  fi
+}
+
+# 5. Global Tooling (pnpm gitmoji-cli, etc.)
 install_cli_tools() {
   log "Installing global CLI tools..."
   if command -v pnpm >/dev/null 2>&1; then
@@ -166,10 +183,17 @@ install_cli_tools() {
   fi
 }
 
-# 5. Apply mise tools & dotfiles
+# 6. Apply mise tools & dotfiles
 deploy_mise() {
   log "Installing mise tools and applying dotfile symlinks..."
   if command -v mise >/dev/null 2>&1; then
+    # Auto-detect desktop environment for MISE_ENV if unset
+    if [ -z "${MISE_ENV:-}" ]; then
+      case "${XDG_CURRENT_DESKTOP:-$DESKTOP_SESSION}" in
+        *KDE*|*plasma*) export MISE_ENV="kde" ;;
+        *GNOME*|*gnome*) export MISE_ENV="gnome" ;;
+      esac
+    fi
     mise install -y
     mise dot apply --yes
   fi
@@ -188,11 +212,12 @@ main() {
   install_system_packages
   install_fonts
   install_fcitx_extras
+  configure_desktop
   install_cli_tools
   deploy_mise
 
   echo -e "\n${BOLD}${GREEN}✨ Bootstrap complete!${RESET}"
-  echo -e "Tip: You may restart your desktop session or reboot to ensure Fcitx5 environment variables are active.\n"
+  echo -e "Tip: You may restart your desktop session or reboot to ensure environment variables are active.\n"
 }
 
 main "$@"

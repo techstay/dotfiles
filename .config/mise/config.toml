@@ -3,12 +3,23 @@ dotfiles.root = "~/.dotfiles"
 dotfiles.default_mode = "symlink"
 
 [tools]
+# Runtimes and package managers
 node = "lts"
 pnpm = "latest"
 lua = "latest"
+
+# Modern CLI utilities
 fzf = "latest"
 fd = "latest"
 eza = "latest"
+bat = "latest"
+ripgrep = "latest"
+btop = "latest"
+delta = "latest"
+dust = "latest"
+tealdeer = "latest"
+
+# Shell prompt and git tools
 starship = "latest"
 lazygit = "latest"
 jujutsu = "latest"
@@ -18,28 +29,43 @@ description = "Install system packages, fonts, fcitx5 addons, and deploy configs
 run = "~/.dotfiles/scripts/setup.sh"
 
 [dotfiles]
+# Terminals
 "~/.config/alacritty/alacritty.yml" = "~/.dotfiles/.config/alacritty/alacritty.yml"
-"~/.config/burn-my-windows/profiles/1748634062383024.conf" = "~/.dotfiles/.config/burn-my-windows/profiles/1748634062383024.conf"
+"~/.config/ghostty/config" = "~/.dotfiles/.config/ghostty/config"
+"~/.config/kitty/kitty.conf" = "~/.dotfiles/.config/kitty/kitty.conf"
+
+# Editor
+"~/.config/zed/settings.json" = "~/.dotfiles/.config/zed/settings.json"
+
+# Shells & Prompt
+"~/.config/fish/config.fish" = "~/.dotfiles/.config/fish/config.fish"
+"~/.zimrc" = "~/.dotfiles/.zimrc"
+"~/.zshrc" = "~/.dotfiles/.zshrc"
+"~/.p10k.zsh" = "~/.dotfiles/.p10k.zsh"
+
+# Git & VCS
+"~/.gitconfig" = "~/.dotfiles/.gitconfig"
+"~/.config/gitmoji-nodejs/config.json" = "~/.dotfiles/.config/gitmoji-nodejs/config.json"
+
+# System, Fonts & Network
 "~/.config/environment.d/im.conf" = "~/.dotfiles/.config/environment.d/im.conf"
 "~/.config/fastfetch/config.jsonc" = "~/.dotfiles/.config/fastfetch/config.jsonc"
+"~/.config/fontconfig/fonts.conf" = "~/.dotfiles/.config/fontconfig/fonts.conf"
+"~/.proxy.sh" = "~/.dotfiles/.proxy.sh"
+"~/.ssh/config" = "~/.dotfiles/.ssh/config"
+
+# Mise configuration files
+"~/.config/mise/config.toml" = "~/.dotfiles/.config/mise/config.toml"
+"~/.config/mise/mise.kde.toml" = "~/.dotfiles/.config/mise/mise.kde.toml"
+"~/.config/mise/mise.gnome.toml" = "~/.dotfiles/.config/mise/mise.gnome.toml"
+
+# Fcitx5 & Rime
 "~/.config/fcitx5/conf/classicui.conf" = "~/.dotfiles/.config/fcitx5/conf/classicui.conf"
 "~/.config/fcitx5/conf/notifications.conf" = "~/.dotfiles/.config/fcitx5/conf/notifications.conf"
 "~/.config/fcitx5/config" = "~/.dotfiles/.config/fcitx5/config"
 "~/.config/fcitx5/profile" = "~/.dotfiles/.config/fcitx5/profile"
-"~/.config/fish/config.fish" = "~/.dotfiles/.config/fish/config.fish"
-"~/.config/ghostty/config" = "~/.dotfiles/.config/ghostty/config"
-"~/.config/gitmoji-nodejs/config.json" = "~/.dotfiles/.config/gitmoji-nodejs/config.json"
-"~/.config/kitty/kitty.conf" = "~/.dotfiles/.config/kitty/kitty.conf"
-"~/.config/mise/config.toml" = "~/.dotfiles/.config/mise/config.toml"
-"~/.config/zed/settings.json" = "~/.dotfiles/.config/zed/settings.json"
-"~/.gitconfig" = "~/.dotfiles/.gitconfig"
 "~/.local/share/fcitx5/rime/default.custom.yaml" = "~/.dotfiles/.local/share/fcitx5/rime/default.custom.yaml"
 "~/.local/share/fcitx5/rime/double_pinyin_flypy.custom.yaml" = "~/.dotfiles/.local/share/fcitx5/rime/double_pinyin_flypy.custom.yaml"
 "~/.local/share/fcitx5/rime/rime_mint.custom.yaml" = "~/.dotfiles/.local/share/fcitx5/rime/rime_mint.custom.yaml"
 "~/.local/share/fcitx5/rime/rime_mint_flypy.custom.yaml" = "~/.dotfiles/.local/share/fcitx5/rime/rime_mint_flypy.custom.yaml"
 "~/.local/share/fcitx5/rime/weasel.custom.yaml" = "~/.dotfiles/.local/share/fcitx5/rime/weasel.custom.yaml"
-"~/.p10k.zsh" = "~/.dotfiles/.p10k.zsh"
-"~/.proxy.sh" = "~/.dotfiles/.proxy.sh"
-"~/.ssh/config" = "~/.dotfiles/.ssh/config"
-"~/.zimrc" = "~/.dotfiles/.zimrc"
-"~/.zshrc" = "~/.dotfiles/.zshrc"

@@ -1,0 +1,6 @@
+# GNOME Desktop Environment Configuration
+# Activated when MISE_ENV includes "gnome"
+
+[dotfiles]
+# Burn My Windows GNOME Shell extension profile
+"~/.config/burn-my-windows/profiles/1748634062383024.conf" = "~/.dotfiles/.config/burn-my-windows/profiles/1748634062383024.conf"

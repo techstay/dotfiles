@@ -8,6 +8,20 @@ fi
 # Ensure ~/.local/bin is in PATH early so mise can be found
 export PATH="$HOME/.local/bin:$PATH"
 
+# Automatically detect desktop environment for mise environment layering
+if [[ -z "$MISE_ENV" ]]; then
+  case "${XDG_CURRENT_DESKTOP:-$DESKTOP_SESSION}" in
+    *KDE*|*plasma*)
+      export MISE_ENV="kde"
+      ;;
+    *GNOME*|*gnome*)
+      export MISE_ENV="gnome"
+      ;;
+    *)
+      ;;
+  esac
+fi
+
 # Activate mise
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
@@ -156,10 +170,11 @@ alias claude='claude --dangerously-skip-permissions'
 alias ls='eza --group-directories-first --icons'
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
 alias ip='ip -color'
-alias zc='z -c'      # 严格匹配当前路径的子路径
-alias zz='z -i'      # 使用交互式选择模式
-alias zf='z -I'      # 使用 fzf 对多个结果进行选择
-alias zb='z -b'      # 快速回到父目录
+
+# Modern CLI tool aliases
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat --paging=never'
+fi
 
 if command -v thefuck >/dev/null 2>&1; then
   eval $(thefuck --alias)
