@@ -1,0 +1,49 @@
+# Ghostty configuration file
+# Reference: https://ghostty.org/docs/config
+
+# ==================== Theme ====================
+# Run `ghostty +list-themes` to view all available themes
+theme = TokyoNight Moon
+
+# ==================== Font & Typography ====================
+# Using regular Nerd Font instead of Nerd Font Mono prevents glyph squishing
+font-family = JetBrainsMono Nerd Font
+font-size = 13.5
+
+# Add extra line spacing for improved readability
+adjust-cell-height = 18%
+
+# Font features: enables ligatures and standard programming symbols
+font-feature = calt
+font-feature = liga
+
+# ==================== Window & Layout ====================
+# Semi-transparency with background blur (well supported on Wayland)
+background-opacity = 0.92
+background-blur = true
+
+# Window padding and balanced spacing
+window-padding-x = 16
+window-padding-y = 14
+window-padding-balance = true
+
+# Frameless minimal look without default titlebar
+# (On GNOME, you can drag the window anywhere while holding Super)
+window-decoration = false
+
+# Default window dimensions
+window-width = 150
+window-height = 42
+
+# ==================== Cursor & Splits ====================
+# Cursor styling with smooth blinking
+cursor-style = bar
+cursor-style-blink = true
+
+# Dim inactive panes when splitting windows
+unfocused-split-opacity = 0.75
+
+# ==================== Mouse & Interaction ====================
+mouse-hide-while-typing = true
+selection-clear-on-typing = true
+scrollback-limit = 10000

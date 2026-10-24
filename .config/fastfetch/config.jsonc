@@ -1,0 +1,99 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "small",
+        "padding": {
+            "top": 1,
+            "right": 2
+        }
+    },
+    "display": {
+        "separator": ">  ",
+        "color": {
+            "separator": "red"
+        },
+        "constants": [
+            "═══════════════════════════════════════════════════════════════════════════",
+            "║\u001b[75C║\u001b[75D"
+        ]
+    },
+    "modules": [
+        {
+            "type": "title",
+            "format": "{#1}{#keys}╔{$1}╗\u001b[76D {user-name-colored}{at-symbol-colored}{host-name-colored} 💻 "
+        },
+        {
+            "type": "os",
+            "key": "{$2}{#31}{icon} distro   "
+        },
+        {
+            "type": "host",
+            "key": "{$2}{#32}󰌢 host     "
+        },
+        {
+            "type": "kernel",
+            "key": "{$2}{#33} kernel   "
+        },
+        {
+            "type": "uptime",
+            "key": "{$2}{#34}󰅐 uptime   "
+        },
+        {
+            "type": "packages",
+            "key": "{$2}{#35}󰏖 packages "
+        },
+        {
+            "type": "shell",
+            "key": "{$2}{#36} shell    "
+        },
+        {
+            "type": "display",
+            "key": "{$2}{#31}󰍹 display  ",
+            "compactType": "original"
+        },
+        {
+            "type": "wm",
+            "key": "{$2}{#32} wm       "
+        },
+        {
+            "type": "theme",
+            "key": "{$2}{#33}󰉼 theme    "
+        },
+        {
+            "type": "terminal",
+            "key": "{$2}{#34} term     "
+        },
+        {
+            "type": "cpu",
+            "key": "{$2}{#35}󰍛 cpu      ",
+            "showPeCoreCount": true
+        },
+        {
+            "type": "gpu",
+            "key": "{$2}{#36}󰢮 gpu      "
+        },
+        {
+            "type": "memory",
+            "key": "{$2}{#31} memory   ",
+            "format": "{used} / {total} ({percentage})"
+        },
+        {
+            "type": "disk",
+            "key": "{$2}{#32}󰉉 disk     ",
+            "folders": "/"
+        },
+        {
+            "type": "custom",
+            "format": "{#1}{#keys}╠{$1}╣"
+        },
+        {
+            "type": "colors",
+            "key": "{$2}{#39} colors   ",
+            "symbol": "circle"
+        },
+        {
+            "type": "custom",
+            "format": "{#1}{#keys}╚{$1}╝"
+        }
+    ]
+}

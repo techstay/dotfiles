@@ -1,72 +1,98 @@
 # dotfiles
 
-我的 dotfiles 仓库，基于 ArchLinux 配置。
+Personal dotfiles repository, declaratively managed with [mise](https://mise.jdx.dev/) for development runtimes, CLI toolchains, and dotfile symlink deployment.
 
-## 开始使用
+---
 
-### 安装依赖
+## 🚀 Quick Start
 
-```sh
-sudo pacman -S --noconfirm --needed yadm zsh lua thefuck fd fzf exa neovim starship diff-so-fancy
+### 1. Install mise
+
+If `mise` is not installed on your system:
+
+```bash
+curl https://mise.run | sh
+
+# Ensure ~/.local/bin is in your PATH (configured in ~/.zshrc and ~/.config/fish/config.fish)
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
-### 拉取配置
+### 2. Clone the Repository
 
-拉取配置之后会执行 bootstrap，在里面我会安装一些依赖。
+Clone this repository into `~/.dotfiles`:
 
-```sh
-yadm clone git@github.com:techstay/dotfiles.git
+```bash
+git clone git@github.com:techstay/dotfiles.git ~/.dotfiles
 ```
 
-### 更新配置
+### 3. Install Toolchains & Deploy Dotfiles
 
-使用 yadm 管理配置文件，基本上就是把有关的 git 命令包装了一下，使用详情可以参考[yadm 官方文档](https://yadm.io/)。
+Navigate to the repository directory, then install tools and deploy all symlinks in one step:
 
-### 配置文件
+```bash
+cd ~/.dotfiles
 
-已添加的配置文件
+# 1. Install declared toolchains (Node, pnpm, starship, lazygit, jujutsu, etc.)
+mise install
 
-- zsh，使用 zim 包管理器，去掉了之前一些花里胡哨的配置，保留了默认配置的简洁
-- fish，只添加了几个常用的 alias
-- git，我的 git 配置
-- proxy
-- gitmoji
-- kitty，一个支持 powerline 字体的终端
-
-#### 输入法
-
-安装 fcitx5 和 rime 输入法。
-
-```sh
-sudo pacman -S --noconfirm --needed fcitx5-rime fcitx5-qt fcitx5-gtk \ 
-	fcitx5-configtool fcitx5-material-color
+# 2. Deploy all dotfile symlinks to $HOME and ~/.config
+mise dot apply
 ```
 
-安装雾凇拼音配置。
+---
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- iDvel/rime-ice:others/recipes/full
+## 📦 Managed Configurations
 
-# 默认安装为 ibus路径，可以用软链接创建 fcitx5 的配置
-mkdir -p ~/.local/share/fcitx5/
-ln -s ~/.config/ibus/rime  ~/.local/share/fcitx5/rime
+The repository currently manages 20 configuration files:
+
+| Category | Target Path | Description |
+| :--- | :--- | :--- |
+| **Tool & Dotfile Management** | `~/.config/mise/config.toml` | Mise tools definition and dotfile symlink mappings |
+| **Shell & Prompt** | `~/.zshrc` | Zsh main config (Zim framework, eza/fzf/mise integration) |
+| | `~/.zimrc` | Zim module declarations |
+| | `~/.p10k.zsh` | Powerlevel10k theme configuration |
+| | `~/.config/fish/config.fish` | Fish shell aliases and environment initialization |
+| **Terminal Emulators** | `~/.config/ghostty/config` | Ghostty (TokyoNight Moon theme, JetBrainsMono Nerd Font) |
+| | `~/.config/kitty/kitty.conf` | Kitty terminal configuration |
+| | `~/.config/alacritty/alacritty.yml` | Alacritty terminal configuration |
+| **Editor** | `~/.config/zed/settings.json` | Zed editor (VSCode keybindings, One Dark theme) |
+| **Version Control & CLI** | `~/.gitconfig` | Git global configuration (aliases, default branches) |
+| | `~/.config/gitmoji-nodejs/config.json` | Gitmoji commit emoji configuration |
+| | `~/.config/fastfetch/config.jsonc` | Fastfetch system information display layout |
+| **Input Method (Fcitx5)** | `~/.config/fcitx5/config` | Fcitx5 shortcuts and core behavior settings |
+| | `~/.config/fcitx5/profile` | Input method list (Default US + Mint Rime Double Pinyin) |
+| | `~/.config/fcitx5/conf/classicui.conf` | UI theme (Mint Dark Green, MiSans font, 9 candidates) |
+| | `~/.config/fcitx5/conf/notifications.conf`| Notification suppression and diagnostics settings |
+| **System & Desktop** | `~/.config/environment.d/im.conf` | Recommended Wayland input method environment variables |
+| | `~/.config/burn-my-windows/profiles/*.conf` | Burn My Windows GNOME extension profile |
+| | `~/.ssh/config` | SSH client host configurations |
+| | `~/.proxy.sh` | Shell proxy environment toggle helper |
+
+---
+
+## 🛠️ Daily Workflow & Maintenance
+
+All dotfile operations are driven by `mise dot` (alias for `mise dotfiles`):
+
+```bash
+# Check the deployment status and differences
+mise dot status
+mise dot diff
+
+# Track a new configuration file (moves to ~/.dotfiles and symlinks back)
+mise dot add ~/.config/xxx/config
+
+# Apply pending updates or restore missing symlinks
+mise dot apply
+
+# Force overwrite conflicting files and deploy
+mise dot apply --force --yes
 ```
 
-创建环境变量文件。
+---
 
-```sh
-tee ~/.config/environment.d/envvars.conf <<'EOL'
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
-SDL_IM_MODULE=fcitx
-GLFW_IM_MODULE=ibus
-EOL
-```
+## ⌨️ Input Method & Desktop Notes
 
-重新部署让配置生效。
-
-```sh
-fcitx5-remote -r
-```
-
+Configured for **Fedora / GNOME (Wayland)**:
+- **Input Method**: Fcitx 5 powered by Rime (Mint Pinyin / Oh-My-Rime schema with Xiaohe Double Pinyin and Wanxiang dictionary).
+- **Environment Variables**: Managed via `~/.config/environment.d/im.conf` following the official Fcitx 5 Wayland recommendations to ensure smooth integration without legacy `GTK_IM_MODULE` issues.

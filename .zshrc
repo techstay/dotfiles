@@ -166,12 +166,26 @@ if command -v thefuck >/dev/null 2>&1; then
 fi
 
 # pnpm
-export PNPM_HOME="/home/techstay/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# Package manager aliases (cross-distro: Arch / Fedora)
+if command -v pacman >/dev/null 2>&1; then
+  alias pac="sudo pacman"
+  alias pacs="pacman -Ss"
+  alias paci="sudo pacman -S"
+  alias pacu="sudo pacman -Syu"
+  alias pacr="sudo pacman -Rns"
+elif command -v dnf >/dev/null 2>&1; then
+  alias dnfs="dnf search"
+  alias dnfi="sudo dnf install"
+  alias dnfu="sudo dnf upgrade"
+  alias dnfr="sudo dnf remove"
+fi
 
 # fzf-tab
 # disable sort when completing `git checkout`
