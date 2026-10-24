@@ -43,7 +43,7 @@ mise dot apply
 
 ## 📦 Managed Configurations
 
-The repository currently manages 20 configuration files:
+The repository currently manages 25 configuration files:
 
 | Category | Target Path | Description |
 | :--- | :--- | :--- |
@@ -59,10 +59,15 @@ The repository currently manages 20 configuration files:
 | **Version Control & CLI** | `~/.gitconfig` | Git global configuration (aliases, default branches) |
 | | `~/.config/gitmoji-nodejs/config.json` | Gitmoji commit emoji configuration |
 | | `~/.config/fastfetch/config.jsonc` | Fastfetch system information display layout |
-| **Input Method (Fcitx5)** | `~/.config/fcitx5/config` | Fcitx5 shortcuts and core behavior settings |
+| **Input Method (Fcitx5 & Rime)** | `~/.config/fcitx5/config` | Fcitx5 shortcuts and core behavior settings |
 | | `~/.config/fcitx5/profile` | Input method list (Default US + Mint Rime Double Pinyin) |
 | | `~/.config/fcitx5/conf/classicui.conf` | UI theme (Mint Dark Green, MiSans font, 9 candidates) |
 | | `~/.config/fcitx5/conf/notifications.conf`| Notification suppression and diagnostics settings |
+| | `~/.local/share/fcitx5/rime/default.custom.yaml` | Rime global overrides (Xiaohe double pinyin, 9 candidates) |
+| | `~/.local/share/fcitx5/rime/double_pinyin_flypy.custom.yaml` | Xiaohe double pinyin custom page size (9 candidates) |
+| | `~/.local/share/fcitx5/rime/rime_mint.custom.yaml` | Mint full pinyin custom page size (9 candidates) |
+| | `~/.local/share/fcitx5/rime/rime_mint_flypy.custom.yaml` | Mint double pinyin custom page size (9 candidates) |
+| | `~/.local/share/fcitx5/rime/weasel.custom.yaml` | Weasel frontend style override (MiSans font, mint_dark_green) |
 | **System & Desktop** | `~/.config/environment.d/im.conf` | Recommended Wayland input method environment variables |
 | | `~/.config/burn-my-windows/profiles/*.conf` | Burn My Windows GNOME extension profile |
 | | `~/.ssh/config` | SSH client host configurations |

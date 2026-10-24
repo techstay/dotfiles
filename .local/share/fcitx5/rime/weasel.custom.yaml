@@ -1,0 +1,7 @@
+# 小狼毫 (Weasel) 覆写配置
+patch:
+  "style/font_face": "MiSans"                 # 字体设为 MiSans
+  "style/color_scheme": mint_dark_green       # 碧月青配色方案
+  "style/color_scheme_dark": mint_dark_green  # 深色模式下同为碧月青
+  "style/font_point": 16                      # 字体放大为16pt
+  "menu/page_size": 9                         # 候选词数量为9

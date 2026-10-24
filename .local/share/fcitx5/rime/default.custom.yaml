@@ -1,0 +1,9 @@
+# Rime default custom settings
+# 薄荷输入法定制：默认启用小鹤双拼，每页9个候选词
+patch:
+  "menu/page_size": 9
+  schema_list:
+    - schema: double_pinyin_flypy  # 小鹤双拼-薄荷定制（默认首选）
+    - schema: rime_mint_flypy      # 薄荷拼音-小鹤混输方案
+    - schema: rime_mint            # 薄荷拼音-全拼输入
+    - schema: terra_pinyin         # 地球拼音-薄荷定制

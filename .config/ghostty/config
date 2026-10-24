@@ -27,13 +27,12 @@ window-padding-x = 16
 window-padding-y = 14
 window-padding-balance = true
 
-# Frameless minimal look without default titlebar
-# (On GNOME, you can drag the window anywhere while holding Super)
-window-decoration = false
+# Window decorations (enable titlebar)
+window-decoration = auto
 
 # Default window dimensions
-window-width = 150
-window-height = 42
+window-width = 100
+window-height = 25
 
 # ==================== Cursor & Splits ====================
 # Cursor styling with smooth blinking
