@@ -37,6 +37,12 @@ install_system_packages() {
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      ttf-nerd-fonts-symbols
+      ttf-nerd-fonts-symbols-mono
+      ttf-jetbrains-mono-nerd
+      ttf-firacode-nerd
+      ttf-cascadia-code-nerd
+      otf-geist-mono-nerd
       # Shells & Terminals
       zsh
       zsh-completions
@@ -99,6 +105,11 @@ install_fonts() {
     done
   else
     info "MesloLGS NF already installed."
+  fi
+
+  # Ensure Symbols Nerd Font fallback is enabled if available
+  if [ -f "/usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf" ] && [ -d "/etc/fonts/conf.d" ]; then
+    sudo ln -sf /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/ 2>/dev/null || true
   fi
 
   # Refresh Fontconfig cache
